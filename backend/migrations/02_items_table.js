@@ -7,7 +7,7 @@ exports.up = function(knex) {
     table.increments('id'); 
     table.integer('userId', 15);
     table.foreign('userId').references('users_table.id');
-    table.string('Item Name', 20); 
+    table.string('ItemName', 20); 
     table.string('description', 100); 
     table.integer('quantity', 20); 
   
