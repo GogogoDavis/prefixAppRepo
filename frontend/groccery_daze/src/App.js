@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { AddItem } from './components/AddItem';
 import { Route, Routes, Link } from 'react-router-dom';
-import { EditItem } from './EditItem.js';
+import { EditItem } from './components/EditItem.js';
 
 
 

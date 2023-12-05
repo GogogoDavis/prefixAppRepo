@@ -43,7 +43,13 @@ export const EditItem = () => {
         navigate(`/item/${id}`);
       })
       .catch((error) => console.error('Error updating item:', error));
-  };
+  }
+  const toggleWindow = () => {
+    setToggle(true); 
+  }
+  const toggleWindowOff = () => {
+    setToggle(false); 
+  }
 
   return (
     <div>
@@ -88,8 +94,9 @@ export const EditItem = () => {
           />
         </label>
         <br />
+        <button onClick={toggleWindowOff()}>Close Edit</button>
         <button type="submit">Update Item</button>
-      </form>
+        </form>
     </div>
   );
 };
