@@ -66,7 +66,6 @@ export const AddItem = () => {
 
   return (
     <div>
-      <h2>Add New Item</h2>
       <form>
       </form>
       <button onClick={openWindow}>New Entry</button>
@@ -124,7 +123,9 @@ export const AddItem = () => {
          <ol>
            {ItemArray.map(item => {
             return <div key={item.id}>
-              <li>{item.ItemName}</li>
+              <li>
+                <h1>{item.ItemName}</h1>
+                </li>
             </div>
           })}
         </ol>

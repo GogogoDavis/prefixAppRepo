@@ -14,6 +14,13 @@ app.get('/', (req, res) => {
     knex('items_table')
     .select('*')
     .then(data => res.json(data))
+});
+
+app.get('/item/:id', (req, res) => {
+    const itemId = req.params.id; 
+    knex('items_table')
+    .where('id', itemId)
+    .then(data => res.json(data))
 })
 
 //Tried using async in case request loops over itself. If this doesn't correct the issue try adding 'id', column to .insert
