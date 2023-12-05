@@ -19,15 +19,19 @@ app.get('/', (req, res) => {
 //Tried using async in case request loops over itself. If this doesn't correct the issue try adding 'id', column to .insert
 //And then delete it, not sure why it fixes the code but it do. 
 app.post('/', async (req , res) => {
-    const newItem = req.body;
-    await knex('items_table')
-    .insert({
+    const newItem = req.body; 
+        try { 
+    await knex('items_table').insert({
+        
         userId: newItem.userId,
         ItemName: newItem.ItemName, 
         description: newItem.description, 
         quantity: newItem.quantity
     })
-    .then((results) => res.json('cracked?'))
+        res.json('cracked?')
+    } catch (error) {
+        console.error('Error creating item:', error)
+    }
 })
 
 //seems to work thus far 

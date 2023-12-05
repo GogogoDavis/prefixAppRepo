@@ -10,6 +10,8 @@ export const AddItem = () => {
     description: '',
     quantity: 0,
   });
+  const [ItemArray, setItemArray] = useState([]);
+  const [AddWindow, setAddWindow] = useState(false);
 
   const handleInputChange = (e) => {
     setNewItem({
@@ -35,12 +37,43 @@ export const AddItem = () => {
         console.error('Error:', error);
         // Handle the error (e.g., show an error message to the user).
       });
+
+  };
+
+  const fetchData = () => {
+    fetch( `http://localhost:8080`)
+    .then(res => res.json())
+    .then(data => {setItemArray(data); 
+      console.log(data);
+    });
+  }
+
+  useEffect(() => {
+  fetchData()
+  }, []);
+
+  //returns all data, map through this and add the addWindow
+ 
+
+  const openWindow = () => {
+    setAddWindow(true);
+  };
+
+  const closeWindow = () => {
+    setAddWindow(false);
+    fetchData();
   };
 
   return (
     <div>
       <h2>Add New Item</h2>
       <form>
+      </form>
+      <button onClick={openWindow}>New Entry</button>
+      {AddWindow ?  (
+          <div className="popup">
+        <button className="close-btn" onClick={closeWindow}>Return</button>
+        <form>
         <label htmlFor="userId">User ID:</label>
         <input
           type="text"
@@ -85,56 +118,19 @@ export const AddItem = () => {
           Add Item
         </button>
       </form>
+      <div>
+       <h1>Inventory Manager</h1>
+       <form>
+         <ol>
+           {ItemArray.map(item => {
+            return <div key={item.id}>
+              <li>{item.ItemName}</li>
+            </div>
+          })}
+        </ol>
+            </form>
+          </div>
     </div>
-  );
-};
-
-
-
-
-
-
-
-//     const [add, setAdd] = useState(false); 
-//     const[itemData, setItemData] = useState();
-//     const [newItem, setNewItem] = useState(' '); 
-
-//     useEffect(() => {
-//         getItemData()
-//       }, [])
-    
-//       const getItemData = () => {
-//         fetch('http://localhost:8080/')
-//         .then(res => res.json())
-//         .then(data => data.sort((a, b) => a.id - b.id))
-//         .then(sortedData => setItemData(sortedData))
-//       }
-    
-//     const handleNewItem = (e) => {
-//         e.preventDefault();
-//         const { queryParams } = `?newItem=${newItem}`
-//         fetch(`http://localhost:8080/${queryParams}`, {
-//             method: 'POST', 
-//             headers: { 'Content-type': 'application/json'}
-//         })
-//     }
-//     const handleItemInput = (e) => {
-//         setNewItem(e.target.value)
-//        }
-//     return ( 
-//         <>
-//         <form id='addForm' onSubmit={handleNewItem}>
-//             <label>
-//                 <input type="text" value={newItem} onChange={handleItemInput}></input>
-//                 <button type='submit'>Add Item</button>
-//             </label>
-//         </form>
-//         <>
-//         {useEffect(() => {
-//         console.log(itemData);
-//     }, [itemData])}
-//     </>
-//         </>
-//     )
-
-
+      ): null}
+    </div>
+  )}; 
