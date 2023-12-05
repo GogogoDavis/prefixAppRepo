@@ -16,9 +16,11 @@ app.get('/', (req, res) => {
     .then(data => res.json(data))
 })
 
-app.post('/', (req , res) => {
+//Tried using async in case request loops over itself. If this doesn't correct the issue try adding 'id', column to .insert
+//And then delete it, not sure why it fixes the code but it do. 
+app.post('/', async (req , res) => {
     const newItem = req.body;
-    knex('items_table')
+    await knex('items_table')
     .insert({
         userId: newItem.userId,
         ItemName: newItem.ItemName, 
@@ -28,7 +30,7 @@ app.post('/', (req , res) => {
     .then((results) => res.json('cracked?'))
 })
 
-
+//seems to work thus far 
     app.patch('/edit/:id', (req, res) => {
     let itemId = req.params.id;
     let itemBody = req.body; 
@@ -44,7 +46,7 @@ app.post('/', (req , res) => {
     )
     .then((updateReturn) => res.json({message: 'hory sheet'}))
     })
-
+//works in postman but not search bar
     app.delete('/delete/:id', async (req, res)=> {
     const itemDel = req.params.id
     knex('items_table')
