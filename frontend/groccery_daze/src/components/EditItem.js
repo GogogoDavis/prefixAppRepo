@@ -11,13 +11,12 @@ export const EditItem = () => {
     ItemName: '',
     description: '',
     quantity: 0,
-  });
+});
 
   useEffect((e) => {
-    e.preventDefault();
-    fetch(`http://localhost:3000/items/${id}`)
+    fetch(`http://localhost:8080/item/${id}`)
       .then((response) => response.json())
-      .then((data) => setItem(data))
+      .then((data) =>  setItem(data))
       .catch((error) => console.error('Error fetching item:', error));
   }, [id]);
 
@@ -31,7 +30,7 @@ export const EditItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`http://localhost:3000/edit/${id}`, {
+    fetch(`http://localhost:8080/edit/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

@@ -120,15 +120,6 @@ export const AddItem = () => {
       <div>
        <h1>Inventory Manager</h1>
        <form>
-         <ol>
-           {ItemArray.map(item => {
-            return <div key={item.id}>
-              <li>
-                <h1>{item.ItemName}</h1>
-                </li>
-            </div>
-          })}
-        </ol>
             </form>
           </div>
     </div>
