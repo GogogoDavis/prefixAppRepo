@@ -4,7 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 export const EditItem = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  
+  const [toggleEdit, setToggleEdit] = useState(true);
   const [item, setItem] = useState({
     userId: '',
     ItemName: '',
@@ -43,12 +44,6 @@ export const EditItem = () => {
         navigate(`/item/${id}`);
       })
       .catch((error) => console.error('Error updating item:', error));
-  }
-  const toggleWindow = () => {
-    setToggle(true); 
-  }
-  const toggleWindowOff = () => {
-    setToggle(false); 
   }
 
   return (
@@ -94,7 +89,6 @@ export const EditItem = () => {
           />
         </label>
         <br />
-        <button onClick={toggleWindowOff()}>Close Edit</button>
         <button type="submit">Update Item</button>
         </form>
     </div>
