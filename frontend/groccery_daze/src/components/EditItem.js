@@ -44,7 +44,7 @@ export const EditItem = () => {
       })
       .catch((error) => console.error('Error updating item:', error));
 
-      window.location.reload();
+      // window.location.reload();
       //it's times like these that make me wish I'd spent more time on kanban 
   }
   return (

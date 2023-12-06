@@ -10,7 +10,7 @@ app.use(express.json())
 
 app.listen(port, () => console.log(`Alrighty weather-boi, this john do be running on port ${port}`))
 
-app.get('/', (req, res) => {
+app.get('/users', (req, res) => {
     knex('users_table')
     .select('*')
     .then(data => res.json(data))

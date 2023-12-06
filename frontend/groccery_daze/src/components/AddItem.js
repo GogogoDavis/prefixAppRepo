@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'; 
+import { useState, useEffect, useContext } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
 import React from 'react'; 
 import './AddItem.css';
+import { itemContext } from '../App.js';
 
 
 export const AddItem = () => {
@@ -13,6 +14,7 @@ export const AddItem = () => {
   });
   const [ItemArray, setItemArray] = useState([]);
   const [AddWindow, setAddWindow] = useState(false);
+  const {isAdmin, setIsAdmin} = useContext(itemContext);
 
   const handleInputChange = (e) => {
     setNewItem({
@@ -40,37 +42,17 @@ export const AddItem = () => {
       });
 
   };
-
-  const fetchData = () => {
-  fetch( `http://localhost:8080/items`)
-    .then(res => res.json())
-    .then(data => {
-        const sortedData = data.sort((a, b) => a.id - b.id); 
-        setItemArray(sortedData);
-    }) 
-}; 
-
-useEffect(() => {
-    console.log(ItemArray);
-}, [ItemArray]);
-
-  useEffect(() => {
-  fetchData()
-  }, []);
-
-  //returns all data, map through this and add the addWindow
- 
-
   const openWindow = () => {
     setAddWindow(true);
   };
 
   const closeWindow = () => {
     setAddWindow(false);
-    fetchData();
   };
 
   return (
+    <>
+    {isAdmin ? (
     <div id='addItemId'>
       <form>
       </form>
@@ -131,4 +113,6 @@ useEffect(() => {
     </div>
       ): null}
     </div>
+    ): null}
+    </>
   )}; 
