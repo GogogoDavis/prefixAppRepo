@@ -11,6 +11,12 @@ app.use(express.json())
 app.listen(port, () => console.log(`Alrighty weather-boi, this john do be running on port ${port}`))
 
 app.get('/', (req, res) => {
+    knex('users_table')
+    .select('*')
+    .then(data => res.json(data))
+})
+
+app.get('/items', (req, res) => {
     knex('items_table')
     .select('*')
     .then(data => res.json(data))
@@ -26,7 +32,7 @@ app.get('/item/:id', (req, res) => {
 
 //Tried using async in case request loops over itself. If this doesn't correct the issue try adding 'id', column to .insert
 //And then delete it, not sure why it fixes the code but it do. 
-app.post('/', async (req , res) => {
+app.post('/items', async (req , res) => {
     const newItem = req.body; 
         try { 
     await knex('items_table').insert({

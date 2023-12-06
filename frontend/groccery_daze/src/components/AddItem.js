@@ -22,7 +22,7 @@ export const AddItem = () => {
   };
 
   const addItem = () => {
-    fetch('http://localhost:8080/', {
+    fetch('http://localhost:8080/items', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export const AddItem = () => {
   };
 
   const fetchData = () => {
-  fetch( `http://localhost:8080`)
+  fetch( `http://localhost:8080/items`)
     .then(res => res.json())
     .then(data => {
         const sortedData = data.sort((a, b) => a.id - b.id); 
