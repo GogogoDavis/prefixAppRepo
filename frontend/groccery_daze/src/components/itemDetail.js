@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'; 
 import { useParams } from 'react-router-dom';
 
+//I HAVE ABANDONED THIS IDEA
+
 export const Detail = () => { 
     const { id } = useParams();
     const [ItemDetail, setItemDetail] = useState({

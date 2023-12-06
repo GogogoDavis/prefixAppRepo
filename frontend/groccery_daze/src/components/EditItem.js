@@ -29,7 +29,6 @@ export const EditItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('What submit:', id)
     fetch(`http://localhost:8080/edit/${id}`, {
       method: 'PATCH',
       headers: {

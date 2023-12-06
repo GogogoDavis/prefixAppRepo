@@ -42,7 +42,7 @@ app.post('/items', async (req , res) => {
         description: newItem.description, 
         quantity: newItem.quantity
     })
-        res.json('cracked?')
+        res.json('Is this butter? Nah, just POST')
     } catch (error) {
         console.error('Error creating item:', error)
     }
@@ -62,7 +62,7 @@ app.post('/items', async (req , res) => {
             quantity: itemBody.quantity
         }
     )
-    .then((updateReturn) => res.json({message: 'hory sheet'}))
+    .then(() => res.json({message: 'I cannot believe it\'s PATCH and not butter!'}))
     })
 //works in postman but not search bar
     app.delete('/delete/:id', async (req, res)=> {
@@ -70,7 +70,7 @@ app.post('/items', async (req , res) => {
     knex('items_table')
    .where('id', itemDel)
     .del()
-    .then(() => res.json({message: `it done did it`})) 
+    .then(() => res.json({message: `it done got gone`})) 
   })
 
 
