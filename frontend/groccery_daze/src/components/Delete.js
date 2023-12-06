@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 export const Delete = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
@@ -11,7 +12,8 @@ export const Delete = () => {
           Accept: 'application/json',
         },
         method: 'DELETE',
-      });
+      })
+      .then(navigate('/'));
     }
   }, [id]);
   return (

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { AddItem } from './components/AddItem';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes, Link, useNavigate } from 'react-router-dom';
 import { EditItem } from './components/EditItem.js';
 import { Delete } from './components/Delete.js';
 // import { Detail } from './components/itemDetail.js';
@@ -10,6 +10,7 @@ import { Delete } from './components/Delete.js';
 
 const App = () => {
   const [LeadArray, setLeadArray] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`http://localhost:8080`)
@@ -19,6 +20,11 @@ const App = () => {
       setLeadArray(sortData)
     });
 }, []);
+const handleEditDelete = () => {
+  //plz work
+  navigate('/', { replace: true });
+  window.location.reload();
+};
 
 
   return (
@@ -36,7 +42,7 @@ const App = () => {
                 <button>Edit Item</button>
               </Link>
               <Link to={`/delete/${item.id}`}>
-                <button>Delete</button>
+                <button onClick={handleEditDelete}>Delete</button>
               </Link>
             </li>
           </div>

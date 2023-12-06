@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 export const EditItem = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -40,11 +40,13 @@ export const EditItem = () => {
       .then((response) => response.json())
       .then((updatedItem) => {
         console.log('Item updated successfully:', updatedItem);
-        navigate(`/item/${id}`);
+        navigate(`/`);
       })
       .catch((error) => console.error('Error updating item:', error));
-  }
 
+      window.location.reload();
+      //it's times like these that make me wish I'd spent more time on a kanban
+  }
   return (
     <div>
       <h2>Edit Item</h2>
@@ -89,6 +91,9 @@ export const EditItem = () => {
         </label>
         <br />
         <button type="submit">Update Item</button>
+        <Link to={`/`}>
+          <button>Never Mind</button>
+        </Link>
         </form>
     </div>
   );
