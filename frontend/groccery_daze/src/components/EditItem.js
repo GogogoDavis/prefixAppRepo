@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-
 export const EditItem = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -13,7 +12,7 @@ export const EditItem = () => {
     quantity: 0,
 });
 
-  useEffect((e) => {
+  useEffect(() => {
     fetch(`http://localhost:8080/item/${id}`)
       .then((response) => response.json())
       .then((data) =>  setItem(data))
@@ -30,6 +29,7 @@ export const EditItem = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log('What submit:', id)
     fetch(`http://localhost:8080/edit/${id}`, {
       method: 'PATCH',
       headers: {

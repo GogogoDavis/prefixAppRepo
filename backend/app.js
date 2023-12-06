@@ -20,6 +20,7 @@ app.get('/item/:id', (req, res) => {
     const itemId = req.params.id; 
     knex('items_table')
     .where('id', itemId)
+    .select('*')
     .then(data => res.json(data))
 })
 

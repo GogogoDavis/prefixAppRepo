@@ -4,7 +4,7 @@ import { AddItem } from './components/AddItem';
 import { Route, Routes, Link } from 'react-router-dom';
 import { EditItem } from './components/EditItem.js';
 import { Delete } from './components/Delete.js';
-import { Detail } from './components/itemDetail.js';
+// import { Detail } from './components/itemDetail.js';
 
 
 
@@ -14,14 +14,17 @@ const App = () => {
   useEffect(() => {
     fetch(`http://localhost:8080`)
     .then((res) => res.json())
-    .then((data) => setLeadArray(data));
+    .then((data) => {
+      const sortData = data.sort((a, b) => a.id - b.id);
+      setLeadArray(sortData)
+    });
 }, []);
 
 
   return (
     <>
     <h1></h1>
-    <ol>
+    <ul>
     {LeadArray.map((item) => (
           <div key={item.id}>
             <li>
@@ -29,23 +32,21 @@ const App = () => {
               <p>Description: {item.description}</p>
               <p>userId: {item.userId}</p>
               <p>Quantity: {item.quantity}</p>
-              <form>
               <Link to={`/edit/${item.id}`}>
                 <button>Edit Item</button>
               </Link>
               <Link to={`/delete/${item.id}`}>
                 <button>Delete</button>
               </Link>
-              </form>
             </li>
           </div>
         ))}
-        </ol>
+        </ul>
     <Routes>
       <Route path='/' element={<AddItem />}/>
       <Route path='/edit/:id' element={<EditItem />}/>
       <Route path='/delete/:id' element={<Delete />}/>
-      <Route path='/item/:id' element={<Detail />}/>
+      {/* <Route path='/item/:id' element={<Detail />}/> */}
     </Routes>
     </>
   )

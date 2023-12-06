@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'; 
 import { useNavigate } from 'react-router-dom'; 
 import React from 'react'; 
+import './AddItem.css';
 
 
 export const AddItem = () => {
@@ -41,12 +42,17 @@ export const AddItem = () => {
   };
 
   const fetchData = () => {
-    fetch( `http://localhost:8080`)
+  fetch( `http://localhost:8080`)
     .then(res => res.json())
-    .then(data => {setItemArray(data); 
-      console.log(data);
-    });
-  }
+    .then(data => {
+        const sortedData = data.sort((a, b) => a.id - b.id); 
+        setItemArray(sortedData);
+    }) 
+}; 
+
+useEffect(() => {
+    console.log(ItemArray);
+}, [ItemArray]);
 
   useEffect(() => {
   fetchData()
@@ -65,7 +71,7 @@ export const AddItem = () => {
   };
 
   return (
-    <div>
+    <div id='addItemId'>
       <form>
       </form>
       <button onClick={openWindow}>New Entry</button>
