@@ -4,6 +4,7 @@ import { AddItem } from './components/AddItem';
 import { Route, Routes, Link } from 'react-router-dom';
 import { EditItem } from './components/EditItem.js';
 import { Delete } from './components/Delete.js';
+import { Detail } from './components/itemDetail.js';
 
 
 
@@ -44,6 +45,7 @@ const App = () => {
       <Route path='/' element={<AddItem />}/>
       <Route path='/edit/:id' element={<EditItem />}/>
       <Route path='/delete/:id' element={<Delete />}/>
+      <Route path='/item/:id' element={<Detail />}/>
     </Routes>
     </>
   )
