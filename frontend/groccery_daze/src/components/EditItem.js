@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import './EditItem.css';
 export const EditItem = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ export const EditItem = () => {
         <label>
           User ID:
           <input
+            id='userId'
             type="text"
             name="userId"
             value={item.userId}
@@ -63,6 +65,7 @@ export const EditItem = () => {
         <label>
           Item Name:
           <input
+            id='ItemName'
             type="text"
             name="ItemName"
             value={item.ItemName}
@@ -73,6 +76,7 @@ export const EditItem = () => {
         <label>
           Description:
           <textarea
+            id='description'
             name="description"
             value={item.description}
             onChange={handleInputChange}
@@ -82,6 +86,7 @@ export const EditItem = () => {
         <label>
           Quantity:
           <input
+            id='quantity'
             type="number"
             name="quantity"
             value={item.quantity}
@@ -89,9 +94,9 @@ export const EditItem = () => {
           />
         </label>
         <br />
-        <button type="submit">Update Item</button>
+        <button type="submit" id='updateBtn'>Update Item</button>
         <Link to={`/`}>
-          <button>Never Mind</button>
+          <button id='nvmBtn'>Never Mind</button>
         </Link>
         </form>
     </div>

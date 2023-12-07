@@ -12,7 +12,7 @@ export const AddItem = () => {
     description: '',
     quantity: 0,
   });
-  const [ItemArray, setItemArray] = useState([]);
+  // const [ItemArray, setItemArray] = useState([]);
   const [AddWindow, setAddWindow] = useState(false);
   const {isAdmin, setIsAdmin} = useContext(itemContext);
 
@@ -34,11 +34,9 @@ export const AddItem = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log('Success:', data);
-        // You can handle the success response here (e.g., show a success message).
       })
       .catch((error) => {
         console.error('Error:', error);
-        // Handle the error (e.g., show an error message to the user).
       });
 
   };
@@ -54,13 +52,11 @@ export const AddItem = () => {
     <>
     {isAdmin ? (
     <div id='addItemId'>
-      <form>
-      </form>
-      <button onClick={openWindow}>New Entry</button>
+      <button onClick={openWindow} id='newBtn'>New Entry</button>
       {AddWindow ?  (
           <div className="popup">
         <button className="close-btn" onClick={closeWindow}>Return</button>
-        <form>
+        <form id='newFillForm'>
         <label htmlFor="userId">User ID:</label>
         <input
           type="text"
@@ -101,15 +97,10 @@ export const AddItem = () => {
           required
         /><br />
 
-        <button type="button" onClick={addItem}>
+        <button id='addBtn' type="button" onClick={addItem}>
           Add Item
         </button>
       </form>
-      <div>
-       <h1>Inventory Manager</h1>
-       <form>
-            </form>
-          </div>
     </div>
       ): null}
     </div>

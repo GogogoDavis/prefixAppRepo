@@ -16,6 +16,22 @@ app.get('/users', (req, res) => {
     .then(data => res.json(data))
 })
 
+app.post('/users', async (req, res) => {
+    const newUser = req.body; 
+    try{
+      await knex('users_table')
+        .insert({
+            FirstName: newUser.FirstName,
+            LastName: newUser.LastName,
+            username: newUser.username,
+            password: newUser.password,
+        })
+        res.json('I cannot believe this is in fact not butter, but instead a POST request to add a new Admin')
+    } catch (error) {
+        console.error('Error:', error)
+    }
+})
+
 app.get('/items', (req, res) => {
     knex('items_table')
     .select('*')

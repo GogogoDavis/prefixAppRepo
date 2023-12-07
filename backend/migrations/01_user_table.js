@@ -5,8 +5,8 @@
 exports.up = function(knex) {
   return knex.schema.createTable('users_table', table => {
     table.increments('id'); 
-    table.string('FirstName', 20); 
-    table.string('LastName', 20); 
+    table.string('FirstName', 50); 
+    table.string('LastName', 50); 
     table.string('username', 50); 
     table.string('password', 50);    
   })

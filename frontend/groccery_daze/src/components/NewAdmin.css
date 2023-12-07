@@ -1,0 +1,32 @@
+#FirstName{
+    background-color: black;
+    color: lime;  
+    font-family:'Courier New', Courier, monospace;
+  }
+
+#LastName{
+    background-color: black;
+    color: lime;  
+    font-family:'Courier New', Courier, monospace;
+  }
+
+#adminBtn{
+    background-color: black;
+    color: lime;  
+    font-family:'Courier New', Courier, monospace;
+  }
+
+#adminBtn:hover{
+    background-color: red;
+} 
+
+#homeBtn{
+    background-color: black;
+    color: lime;  
+    font-family:'Courier New', Courier, monospace;
+  }
+
+#homeBtn:hover{
+    background-color: red;
+}   
+
