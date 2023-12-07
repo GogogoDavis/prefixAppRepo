@@ -48,6 +48,7 @@ app.get('/item/:id', (req, res) => {
 
 //Tried using async in case request loops over itself. If this doesn't correct the issue try adding 'id', column to .insert
 //And then delete it, not sure why it fixes the code but it do. 
+//I Think I've corrected the issue... tentatively 
 app.post('/items', async (req , res) => {
     const newItem = req.body; 
         try { 
